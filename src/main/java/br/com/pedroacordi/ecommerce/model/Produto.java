@@ -1,5 +1,7 @@
 package br.com.pedroacordi.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -82,6 +84,18 @@ public class Produto {
 
     public List<Categoria> getCategorias() {
         return categorias;
+    }
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("produto")
+    private List<Variante> variantes;
+
+    public List<Variante> getVariantes() {
+        return variantes;
+    }
+
+    public void setVariantes(List<Variante> variantes) {
+        this.variantes = variantes;
     }
 
     public void setCategorias(List<Categoria> categorias) {
