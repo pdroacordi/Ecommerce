@@ -1,6 +1,7 @@
 package br.com.pedroacordi.ecommerce.service.pedido;
 
 import br.com.pedroacordi.ecommerce.dao.PedidoDAO;
+import br.com.pedroacordi.ecommerce.dto.FaturamentoMensal;
 import br.com.pedroacordi.ecommerce.model.ItemPedido;
 import br.com.pedroacordi.ecommerce.model.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class PedidoService implements IPedidoService{
     @Override
     public List<Pedido> recuperarPorStatus(Integer status) {
         return dao.findAllByStatus(status);
+    }
+
+    @Override
+    public List<FaturamentoMensal> recuperarFaturamento(Integer ano) {
+        return dao.recuperarFaturamento(ano);
     }
 }

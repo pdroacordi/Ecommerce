@@ -1,5 +1,6 @@
 package br.com.pedroacordi.ecommerce.controller;
 
+import br.com.pedroacordi.ecommerce.dto.FaturamentoMensal;
 import br.com.pedroacordi.ecommerce.model.Pedido;
 import br.com.pedroacordi.ecommerce.service.pedido.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,10 @@ public class PedidoController {
         if(res != null)
             return ResponseEntity.ok(res);
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/pedidos/faturamento/{ano}")
+    public ResponseEntity<List<FaturamentoMensal>> recuperarFaturamento(@PathVariable Integer ano){
+        return ResponseEntity.ok(service.recuperarFaturamento(ano));
     }
 }
